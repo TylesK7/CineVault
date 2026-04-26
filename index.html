@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>CinePipocão — Meus Filmes Favoritos</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400&family=Cormorant+Garamond:wght@300;400;600&family=Oswald:wght@200;400;600&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="style.css"/>
+</head>
+<body>
+
+  <!-- ===== AUTH OVERLAY ===== -->
+  <div class="auth-overlay" id="authOverlay">
+    <div class="auth-box">
+      <div class="auth-logo">Cine<span>Pipocão</span></div>
+      <p class="auth-tagline">✦ Seu Cinema Pessoal ✦</p>
+
+      <div class="auth-tabs">
+        <button class="auth-tab active" data-tab="login" onclick="switchTab('login')">Entrar</button>
+        <button class="auth-tab" data-tab="register" onclick="switchTab('register')">Cadastrar</button>
+      </div>
+
+      <!-- LOGIN -->
+      <div class="auth-form active" id="form-login">
+        <div class="auth-field">
+          <label>Nome de Usuário</label>
+          <input type="text" id="log-name" placeholder="Seu nome" autocomplete="username"/>
+        </div>
+        <div class="auth-field">
+          <label>Senha</label>
+          <input type="password" id="log-pass" placeholder="••••••" autocomplete="current-password"/>
+        </div>
+        <p class="auth-error" id="log-error"></p>
+        <button class="auth-btn" onclick="doLogin()">▶ Entrar</button>
+      </div>
+
+      <!-- REGISTER -->
+      <div class="auth-form" id="form-register">
+        <div class="auth-field">
+          <label>Nome de Usuário</label>
+          <input type="text" id="reg-name" placeholder="Escolha um nome" autocomplete="username"/>
+        </div>
+        <div class="auth-field">
+          <label>Senha</label>
+          <input type="password" id="reg-pass" placeholder="Mínimo 4 caracteres" autocomplete="new-password"/>
+        </div>
+        <p class="auth-error" id="reg-error"></p>
+        <button class="auth-btn" onclick="doRegister()">✦ Criar Conta</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===== NAV ===== -->
+  <nav>
+    <a href="index.html" class="nav-logo">Cine<span>Pipocão</span></a>
+    <div class="nav-right">
+      <ul class="nav-links">
+        <li><a href="#filmes">Filmes</a></li>
+        <li><a href="sobre.html">Sobre</a></li>
+        <li><a href="contato.html">Contato</a></li>
+      </ul>
+      <div class="nav-user" id="navUser" style="display:none;">
+        <span class="nav-user-name" id="navUserName"></span>
+        <button class="nav-logout" onclick="doLogout()">Sair</button>
+      </div>
+    </div>
+  </nav>
+
+  <!-- ===== HERO ===== -->
+  <section class="hero" id="inicio">
+    <p class="hero-eyebrow">✦ Curadoria Pessoal de Cinema</p>
+    <h1 class="hero-title">
+      Grandes<br/>
+      <em>Histórias</em><br/>
+      na Tela
+    </h1>
+    <p class="hero-subtitle">
+      Uma seleção apaixonada dos filmes que marcaram minha vida — 
+      obras que transcendem o entretenimento e tocam a alma.
+    </p>
+    <a href="#filmes" class="hero-cta">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+        <polygon points="5,3 19,12 5,21"/>
+      </svg>
+      Ver a Coleção
+    </a>
+    <span class="hero-badge">Cinema · Arte · Emoção · 2025</span>
+  </section>
+
+  <!-- ===== FILMES ===== -->
+  <section id="filmes">
+    <div class="section-header">
+      <span class="section-label">✦ Seleção</span>
+      <h2 class="section-title">Meus Favoritos</h2>
+      <div class="section-line"></div>
+    </div>
+
+    <!-- Filter Bar -->
+    <div class="filter-bar">
+      <button class="filter-btn active" onclick="setFilter(this, 'Todos')">Todos</button>
+      <button class="filter-btn" onclick="setFilter(this, 'Crime')">Crime</button>
+      <button class="filter-btn" onclick="setFilter(this, 'Sci-Fi')">Sci-Fi</button>
+      <button class="filter-btn" onclick="setFilter(this, 'Drama')">Drama</button>
+      <button class="filter-btn" onclick="setFilter(this, 'Thriller')">Thriller</button>
+      <button class="filter-btn" onclick="setFilter(this, 'Suspense')">Suspense</button>
+    </div>
+
+    <div class="movies-grid" id="moviesGrid">
+      <!-- Cards renderizados via JS -->
+    </div>
+  </section>
+
+  <!-- ===== QUOTE BAND ===== -->
+  <div class="quote-band">
+    <p class="quote-text">
+      "O cinema é um espelho que reflete a alma humana — 
+      nas sombras do escuro, encontramos a nós mesmos."
+    </p>
+    <p class="quote-author">— Andrei Tarkovsky</p>
+  </div>
+
+  <!-- ===== SOBRE ===== -->
+  <section id="sobre">
+    <div class="section-header">
+      <span class="section-label">✦ Quem Sou</span>
+      <h2 class="section-title">Sobre o Cinéfilo</h2>
+      <div class="section-line"></div>
+    </div>
+    <div class="sobre-inner">
+      <div class="sobre-text">
+        <p>
+          Sou um <strong>apaixonado por cinema</strong> que acredita que filmes têm 
+          o poder de transformar perspectivas, evocar emoções profundas e conectar 
+          pessoas através de culturas e gerações.
+        </p>
+        <p>
+          Esta página é um registro das obras que mais me marcaram — filmes que 
+          assisti múltiplas vezes e que cada sessão revela uma <strong>nova camada</strong> 
+          de significado, uma nova nuance que havia escapado antes.
+        </p>
+        <p>
+          Do neorrealismo italiano aos blockbusters contemporâneos, meu gosto 
+          percorre todos os gêneros. O que procuro sempre é a <strong>honestidade 
+          emocional</strong> e a maestria técnica que transformam celuloide em arte.
+        </p>
+        <a href="contato.html" style="display:inline-block; margin-top: 8px;">
+          <button class="overlay-btn" style="padding: 14px 28px; font-size: 0.75rem;">
+            Entre em Contato
+          </button>
+        </a>
+      </div>
+      <div class="sobre-stats">
+        <div class="stat-box">
+          <span class="stat-number" id="countFilmes">0</span>
+          <span class="stat-label">Filmes na Lista</span>
+        </div>
+        <div class="stat-box">
+          <span class="stat-number" id="countAnos">0</span>
+          <span class="stat-label">Anos de Cinefilia</span>
+        </div>
+        <div class="stat-box">
+          <span class="stat-number" id="countDiretores">0</span>
+          <span class="stat-label">Diretores Favoritos</span>
+        </div>
+        <div class="stat-box">
+          <span class="stat-number" id="countHoras">0</span>
+          <span class="stat-label">Horas na Tela</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== FOOTER ===== -->
+  <footer>
+    <div class="footer-logo">Cine<span>Pipocão</span></div>
+    <p class="footer-copy">© 2025 — Feito com paixão pelo cinema</p>
+    <a href="contato.html" class="footer-link">Fale Comigo →</a>
+  </footer>
+
+  <!-- ===== TOAST ===== -->
+  <div class="toast" id="toast">
+    <p class="toast-title">🎬 CinePipocão</p>
+    <p class="toast-msg" id="toastMsg">Bem-vindo!</p>
+  </div>
+
+  <!-- ===== MODAL ===== -->
+  <div class="modal-overlay" id="modalOverlay" onclick="closeModalOutside(event)">
+    <div class="modal" id="modal">
+      <button class="modal-close" onclick="closeModal()">×</button>
+      <div class="modal-layout">
+        <div class="modal-info">
+          <p class="modal-genre" id="modalGenre"></p>
+          <h2 class="modal-title" id="modalTitle"></h2>
+          <p class="modal-meta" id="modalMeta"></p>
+          <div class="modal-divider"></div>
+          <p class="modal-synopsis" id="modalSynopsis"></p>
+          <div class="modal-rating">
+            <span>Avaliação:</span>
+            <div class="modal-stars" id="modalStars"></div>
+            <span id="modalScore"></span>
+          </div>
+        </div>
+        <div class="modal-trailer-box">
+          <p class="modal-trailer-title">Trailer</p>
+          <div class="modal-trailer-frame">
+            <iframe
+              id="modalTrailer"
+              src=""
+              title="Trailer do filme"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+              referrerpolicy="strict-origin-when-cross-origin"
+              loading="lazy"
+              allowfullscreen>
+            </iframe>
+          </div>
+          <a class="modal-trailer-link" id="modalTrailerLink" href="#" target="_blank" rel="noopener noreferrer">
+            Abrir trailer no YouTube ↗
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="main.js"></script>
+
+</body>
+</html>

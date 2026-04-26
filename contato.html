@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>CinePipocão — Contato</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400&family=Cormorant+Garamond:wght@300;400;600&family=Oswald:wght@200;400;600&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="style.css"/>
+</head>
+<body>
+
+  <!-- ===== AUTH OVERLAY ===== -->
+  <div class="auth-overlay" id="authOverlay">
+    <div class="auth-box">
+      <div class="auth-logo">Cine<span>Pipocão</span></div>
+      <p class="auth-tagline">✦ Seu Cinema Pessoal ✦</p>
+
+      <div class="auth-tabs">
+        <button class="auth-tab active" data-tab="login" onclick="switchTab('login')">Entrar</button>
+        <button class="auth-tab" data-tab="register" onclick="switchTab('register')">Cadastrar</button>
+      </div>
+
+      <div class="auth-form active" id="form-login">
+        <div class="auth-field">
+          <label>Nome de Usuário</label>
+          <input type="text" id="log-name" placeholder="Seu nome" autocomplete="username"/>
+        </div>
+        <div class="auth-field">
+          <label>Senha</label>
+          <input type="password" id="log-pass" placeholder="••••••" autocomplete="current-password"/>
+        </div>
+        <p class="auth-error" id="log-error"></p>
+        <button class="auth-btn" onclick="doLogin()">▶ Entrar</button>
+      </div>
+
+      <div class="auth-form" id="form-register">
+        <div class="auth-field">
+          <label>Nome de Usuário</label>
+          <input type="text" id="reg-name" placeholder="Escolha um nome" autocomplete="username"/>
+        </div>
+        <div class="auth-field">
+          <label>Senha</label>
+          <input type="password" id="reg-pass" placeholder="Mínimo 4 caracteres" autocomplete="new-password"/>
+        </div>
+        <p class="auth-error" id="reg-error"></p>
+        <button class="auth-btn" onclick="doRegister()">✦ Criar Conta</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===== NAV ===== -->
+  <nav>
+    <a href="index.html" class="nav-logo">Cine<span>Pipocão</span></a>
+    <div class="nav-right">
+      <ul class="nav-links">
+        <li><a href="index.html#filmes">Filmes</a></li>
+        <li><a href="sobre.html">Sobre</a></li>
+        <li><a href="contato.html">Contato</a></li>
+      </ul>
+      <div class="nav-user" id="navUser" style="display:none;">
+        <span class="nav-user-name" id="navUserName"></span>
+        <button class="nav-logout" onclick="doLogout()">Sair</button>
+      </div>
+    </div>
+  </nav>
+
+  <section class="hero page-hero" id="contato">
+    <p class="hero-eyebrow">✦ Fale Comigo</p>
+    <h1 class="hero-title">
+      Contato<br/>
+      <em>CinePipocão</em>
+    </h1>
+    <p class="hero-subtitle">
+      Tem uma sugestão de filme, uma crítica, uma recomendação ou quer falar sobre cinema?
+      Envie sua mensagem por aqui.
+    </p>
+  </section>
+
+  <section>
+    <div class="section-header">
+      <span class="section-label">✦ Mensagem</span>
+      <h2 class="section-title">Entre em Contato</h2>
+      <div class="section-line"></div>
+    </div>
+
+    <div class="contact-grid">
+      <aside class="contact-list">
+        <div class="contact-card">
+          <h3>Recomendações</h3>
+          <p>Envie nomes de filmes que merecem aparecer na coleção do CinePipocão.</p>
+        </div>
+        <div class="contact-card">
+          <h3>Email</h3>
+          <p><a class="contact-link" href="mailto:seuemail@email.com">seuemail@email.com</a></p>
+        </div>
+        <div class="contact-card">
+          <h3>Resposta</h3>
+          <p>Como este projeto é estático, o formulário abaixo precisa de um backend ou serviço de formulário para enviar mensagens de verdade.</p>
+        </div>
+      </aside>
+
+      <form class="contact-form" id="contatoForm">
+        <h3>Enviar mensagem</h3>
+        <p>Preencha os campos abaixo para simular o envio da mensagem no site.</p>
+
+        <div class="form-row">
+          <div class="form-field">
+            <label for="nome">Nome</label>
+            <input type="text" id="nome" name="nome" placeholder="Seu nome" required />
+          </div>
+          <div class="form-field">
+            <label for="email">Email</label>
+            <input type="email" id="email" name="email" placeholder="seuemail@email.com" required />
+          </div>
+        </div>
+
+        <div class="form-field">
+          <label for="assunto">Assunto</label>
+          <select id="assunto" name="assunto" required>
+            <option value="">Selecione uma opção</option>
+            <option value="recomendacao">Recomendação de filme</option>
+            <option value="critica">Crítica ou sugestão</option>
+            <option value="erro">Relatar erro no site</option>
+            <option value="outro">Outro assunto</option>
+          </select>
+        </div>
+
+        <div class="form-field">
+          <label for="mensagem">Mensagem</label>
+          <textarea id="mensagem" name="mensagem" placeholder="Escreva sua mensagem..." required></textarea>
+        </div>
+
+        <button class="auth-btn" type="submit">Enviar Mensagem</button>
+        <p class="form-note">Para envio real, troque essa simulação por Formspree, EmailJS, PHP ou outro backend.</p>
+      </form>
+    </div>
+  </section>
+  <!-- ===== FOOTER ===== -->
+  <footer>
+    <div class="footer-logo">Cine<span>Pipocão</span></div>
+    <p class="footer-copy">© 2025 — Feito com paixão pelo cinema</p>
+    <a href="contato.html" class="footer-link">Fale Comigo →</a>
+  </footer>
+
+  <!-- ===== TOAST ===== -->
+  <div class="toast" id="toast">
+    <p class="toast-title">🎬 CinePipocão</p>
+    <p class="toast-msg" id="toastMsg">Bem-vindo!</p>
+  </div>
+
+  <script src="main.js"></script>
+</body>
+</html>

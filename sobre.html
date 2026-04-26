@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>CinePipocão — Sobre</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400&family=Cormorant+Garamond:wght@300;400;600&family=Oswald:wght@200;400;600&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="style.css"/>
+</head>
+<body>
+
+  <!-- ===== AUTH OVERLAY ===== -->
+  <div class="auth-overlay" id="authOverlay">
+    <div class="auth-box">
+      <div class="auth-logo">Cine<span>Pipocão</span></div>
+      <p class="auth-tagline">✦ Seu Cinema Pessoal ✦</p>
+
+      <div class="auth-tabs">
+        <button class="auth-tab active" data-tab="login" onclick="switchTab('login')">Entrar</button>
+        <button class="auth-tab" data-tab="register" onclick="switchTab('register')">Cadastrar</button>
+      </div>
+
+      <div class="auth-form active" id="form-login">
+        <div class="auth-field">
+          <label>Nome de Usuário</label>
+          <input type="text" id="log-name" placeholder="Seu nome" autocomplete="username"/>
+        </div>
+        <div class="auth-field">
+          <label>Senha</label>
+          <input type="password" id="log-pass" placeholder="••••••" autocomplete="current-password"/>
+        </div>
+        <p class="auth-error" id="log-error"></p>
+        <button class="auth-btn" onclick="doLogin()">▶ Entrar</button>
+      </div>
+
+      <div class="auth-form" id="form-register">
+        <div class="auth-field">
+          <label>Nome de Usuário</label>
+          <input type="text" id="reg-name" placeholder="Escolha um nome" autocomplete="username"/>
+        </div>
+        <div class="auth-field">
+          <label>Senha</label>
+          <input type="password" id="reg-pass" placeholder="Mínimo 4 caracteres" autocomplete="new-password"/>
+        </div>
+        <p class="auth-error" id="reg-error"></p>
+        <button class="auth-btn" onclick="doRegister()">✦ Criar Conta</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===== NAV ===== -->
+  <nav>
+    <a href="index.html" class="nav-logo">Cine<span>Pipocão</span></a>
+    <div class="nav-right">
+      <ul class="nav-links">
+        <li><a href="index.html#filmes">Filmes</a></li>
+        <li><a href="sobre.html">Sobre</a></li>
+        <li><a href="contato.html">Contato</a></li>
+      </ul>
+      <div class="nav-user" id="navUser" style="display:none;">
+        <span class="nav-user-name" id="navUserName"></span>
+        <button class="nav-logout" onclick="doLogout()">Sair</button>
+      </div>
+    </div>
+  </nav>
+
+  <section class="hero page-hero" id="sobre">
+    <p class="hero-eyebrow">✦ Sobre o Projeto</p>
+    <h1 class="hero-title">
+      Cine<br/>
+      <em>Pipocão</em>
+    </h1>
+    <p class="hero-subtitle">
+      Um site de curadoria pessoal para reunir filmes favoritos, apresentar sinopses, avaliações,
+      gêneros e trailers em uma experiência visual inspirada no cinema clássico.
+    </p>
+  </section>
+
+  <section>
+    <div class="section-header">
+      <span class="section-label">✦ Identidade</span>
+      <h2 class="section-title">Sobre o Site</h2>
+      <div class="section-line"></div>
+    </div>
+
+    <div class="sobre-inner">
+      <div class="sobre-text">
+        <p>
+          O <strong>CinePipocão</strong> nasceu como uma página para organizar filmes marcantes em uma
+          interface elegante, escura e com detalhes dourados. A proposta é parecer uma pequena sala de cinema digital:
+          simples de navegar, bonita de apresentar e direta para encontrar uma boa recomendação.
+        </p>
+        <p>
+          A coleção de filmes é carregada pelo <strong>JavaScript</strong>, que monta os cards automaticamente,
+          aplica filtros por gênero e abre um modal com informações completas. Agora, o modal também exibe o
+          <strong>trailer ao lado</strong>, deixando a experiência mais completa.
+        </p>
+        <p>
+          Como o projeto é estático, ele pode funcionar bem em hospedagens simples como GitHub Pages. O sistema de
+          login e favoritos usa <strong>localStorage</strong>, então os dados ficam salvos apenas no navegador do usuário.
+        </p>
+      </div>
+      <div class="sobre-stats">
+        <div class="stat-box">
+          <span class="stat-number" id="countFilmes">0</span>
+          <span class="stat-label">Filmes na Lista</span>
+        </div>
+        <div class="stat-box">
+          <span class="stat-number" id="countAnos">0</span>
+          <span class="stat-label">Anos de Cinefilia</span>
+        </div>
+        <div class="stat-box">
+          <span class="stat-number" id="countDiretores">0</span>
+          <span class="stat-label">Diretores Favoritos</span>
+        </div>
+        <div class="stat-box">
+          <span class="stat-number" id="countHoras">0</span>
+          <span class="stat-label">Horas na Tela</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="detalhes">
+    <div class="section-header">
+      <span class="section-label">✦ Recursos</span>
+      <h2 class="section-title">O que o site faz</h2>
+      <div class="section-line"></div>
+    </div>
+
+    <div class="about-feature-grid">
+      <article class="about-card">
+        <h3>Catálogo Dinâmico</h3>
+        <p>Os cards são criados a partir do objeto de filmes no JavaScript, evitando repetir HTML manualmente.</p>
+      </article>
+      <article class="about-card">
+        <h3>Filtros por Gênero</h3>
+        <p>O visitante pode filtrar por crime, drama, suspense, thriller e ficção científica.</p>
+      </article>
+      <article class="about-card">
+        <h3>Modal com Trailer</h3>
+        <p>Ao clicar em um filme, o site abre sinopse, avaliação e trailer incorporado lado a lado.</p>
+      </article>
+    </div>
+  </section>
+  <!-- ===== FOOTER ===== -->
+  <footer>
+    <div class="footer-logo">Cine<span>Pipocão</span></div>
+    <p class="footer-copy">© 2025 — Feito com paixão pelo cinema</p>
+    <a href="contato.html" class="footer-link">Fale Comigo →</a>
+  </footer>
+
+  <!-- ===== TOAST ===== -->
+  <div class="toast" id="toast">
+    <p class="toast-title">🎬 CinePipocão</p>
+    <p class="toast-msg" id="toastMsg">Bem-vindo!</p>
+  </div>
+
+  <script src="main.js"></script>
+</body>
+</html>
